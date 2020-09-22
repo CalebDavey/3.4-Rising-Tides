@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class pillarMovement : MonoBehaviour
 {
-        float height = 5f;
-        public float time = 1f;
+    public float pillarNoiseOffset = 5;
+    public float time = 1f;
+    public float shakeMagnitude = 0.05f;
 
-        public void Start()
+    float height;
+
+    public void Start()
         {
-            float offset = Random.Range(1, 5);
-
+            float pillarOffset = Random.Range(0, pillarNoiseOffset);
+            
             // height = Random.Range(5, 10); // RANDOM HEIGHTS
-            height = Mathf.Round(Mathf.PerlinNoise((this.transform.position.x + offset) / 10, (this.transform.position.y + offset) / 10) * 10);
+            height = Mathf.Round(Mathf.PerlinNoise((this.transform.position.x + pillarOffset) / 10, (this.transform.position.y + pillarOffset) / 10) * 10);
         }
         private void Update()
         {
@@ -23,7 +26,7 @@ public class pillarMovement : MonoBehaviour
         }
 
 
-        IEnumerator pillarRise(float riseHeight, float riseTime)
+        public IEnumerator pillarRise(float riseHeight, float riseTime)
         {
             float StartTime = Time.time;
             float EndTime = StartTime + riseTime;
