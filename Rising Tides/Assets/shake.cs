@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class CameraShake : MonoBehaviour
+public class shake : MonoBehaviour
 {
     private CinemachineVirtualCamera cinemachineCam;
     private CinemachineBasicMultiChannelPerlin perlin;
 
-    private float shakeTimer;
-    
+    public float shakeMagnitude = 0.1f;
+    public bool shaking = false;
 
     private void Awake()
     {
@@ -18,21 +18,17 @@ public class CameraShake : MonoBehaviour
         perlin.m_AmplitudeGain = 0;
     }
 
-    public void ShakeCamera(float intensity, float time)
-    {
-        perlin.m_AmplitudeGain = intensity;
-        shakeTimer = time;
-    }
+
 
     private void Update()
     {
-        if(shakeTimer > 0)
+        if (shaking)
         {
-            shakeTimer -= Time.deltaTime;
-        } else
+            perlin.m_AmplitudeGain = shakeMagnitude;
+        }
+        else
         {
             perlin.m_AmplitudeGain = 0;
         }
     }
-
 }
