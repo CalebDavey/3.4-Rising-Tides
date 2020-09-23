@@ -4,18 +4,11 @@ using UnityEngine;
 
 public class pillarMovement : MonoBehaviour
 {
-    public float pillarNoiseOffset = 5;
     public float time = 1f;
     public shake camShake;
 
     public float height;
 
-    public void Start()
-    {
-        float pillarOffset = Random.Range(0, pillarNoiseOffset);
-
-       // height = Mathf.Round(Mathf.PerlinNoise((this.transform.position.x + pillarOffset) / 10, (this.transform.position.y + pillarOffset) / 10) * 10);
-    }
     private void Update()
     {
         if (Input.anyKeyDown)
