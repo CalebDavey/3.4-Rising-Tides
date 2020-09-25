@@ -8,7 +8,6 @@ public class InitializePillars : MonoBehaviour
     public int gridSizeX = 5;
     public int gridSizeZ = 5;
 
-    public float maxHeight = 5;
     public float pillarNoiseOffset = 5;
 
     public GameObject pillar;
@@ -17,16 +16,26 @@ public class InitializePillars : MonoBehaviour
 
     GameObject[,] pillars;
 
+    private int pillarXSize;
+    private int pillarZSize;
+    private int pillarYSize;
+
     // Start is called before the first frame update
     void Awake()
     {
-        pillars = new GameObject[gridSizeX, gridSizeZ];
+        pillarXSize = (int)pillar.transform.localScale.x;
+        pillarZSize = (int)pillar.transform.localScale.z;
+        pillarYSize = (int)pillar.transform.localScale.y;
 
-        for (int x = 0; x < gridSizeX; x++)
+        pillars = new GameObject[gridSizeX * pillarXSize, gridSizeZ * pillarZSize];
+
+        for (int x = 0; x < gridSizeX * pillarXSize; x += pillarXSize)
         {
-            for(int z = 0; z < gridSizeZ; z++)
+            for(int z = 0; z < gridSizeZ * pillarZSize; z += pillarZSize)
             {
-                GameObject newPillar = Instantiate(pillar, new Vector3(x, 0, z), Quaternion.identity, parent.transform);
+                Vector3 initPos = new Vector3(x - gridSizeX*2, -(pillarYSize / 2), z - gridSizeZ * 2);
+
+                GameObject newPillar = Instantiate(pillar, initPos, Quaternion.identity, parent.transform);
                 pillars[x,z] = newPillar;
 
                 pillarMovement pillarMovementScript = newPillar.GetComponent<pillarMovement>();

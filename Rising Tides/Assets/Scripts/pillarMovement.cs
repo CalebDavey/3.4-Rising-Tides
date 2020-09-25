@@ -9,12 +9,9 @@ public class pillarMovement : MonoBehaviour
 
     public float height;
 
-    private void Update()
+    private void Start()
     {
-        if (Input.anyKeyDown)
-        {
             StartCoroutine(pillarRise(height, time));
-        }
     }
 
 
