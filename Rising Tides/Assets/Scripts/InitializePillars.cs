@@ -7,6 +7,7 @@ public class InitializePillars : MonoBehaviour
 
     public int gridSizeX = 5;
     public int gridSizeZ = 5;
+    public int pillarInitHeight = -10;
 
     public float pillarNoiseOffset = 5;
 
@@ -33,7 +34,7 @@ public class InitializePillars : MonoBehaviour
         {
             for(int z = 0; z < gridSizeZ * pillarZSize; z += pillarZSize)
             {
-                Vector3 initPos = new Vector3(x - gridSizeX*2, -(pillarYSize / 2), z - gridSizeZ * 2);
+                Vector3 initPos = new Vector3(x - (gridSizeX*2), pillarInitHeight - (pillarYSize / 2), z - (gridSizeZ * 2));
 
                 GameObject newPillar = Instantiate(pillar, initPos, Quaternion.identity, parent.transform);
                 pillars[x,z] = newPillar;
@@ -44,7 +45,7 @@ public class InitializePillars : MonoBehaviour
 
                 float pillarOffset = Random.Range(0, pillarNoiseOffset);
                 
-                pillarMovementScript.height = Mathf.Round(Mathf.PerlinNoise((this.transform.position.x + pillarOffset) / 10, (this.transform.position.y + pillarOffset) / 10) * 10);
+                pillarMovementScript.height = pillarInitHeight + Mathf.Round(Mathf.PerlinNoise((this.transform.position.x + pillarOffset) / 10, (this.transform.position.y + pillarOffset) / 10) * 10);
             }
         }            
     }

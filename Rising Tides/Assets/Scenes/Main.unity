@@ -357,7 +357,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridSizeX: 20
-  gridSizeZ: 4
+  gridSizeZ: 5
+  pillarInitHeight: -15
   pillarNoiseOffset: 5
   pillar: {fileID: 6238598293047843717, guid: 2eb722e8ef4464142a010386a628e7c3, type: 3}
   parent: {fileID: 1504974205}
@@ -604,8 +605,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66cb9d269ec968a46974afb3d09534b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterSizeX: 100
+  waterSizeX: 120
   waterSizeZ: 20
+  waterY: -10
 --- !u!4 &1888559312
 Transform:
   m_ObjectHideFlags: 0
@@ -1967,7 +1969,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5432059582829826946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7552210996889891423}

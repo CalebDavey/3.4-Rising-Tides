@@ -5,10 +5,13 @@ using UnityEngine;
 public class water : MonoBehaviour
 {
     List<Vector3> verts = new List<Vector3>();
+    List<Vector3> prevVerts = new List<Vector3>();
+
     List<int> tris = new List<int>();
 
     public float waterSizeX = 20;
     public float waterSizeZ = 20;
+    public int waterY = -10;
 
     Mesh mesh;
 
@@ -17,19 +20,19 @@ public class water : MonoBehaviour
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
 
-        formMesh(Vector3.zero, waterSizeX, waterSizeZ);
+        formMesh(waterY, waterSizeX, waterSizeZ);
         displayMesh();
     }
 
-    void formMesh(Vector3 startPos, float width, float height)
+    void formMesh(float startY, float width, float height)
     {
-        float y = startPos.y;
+        float y = startY;
         int t = 0;
-
+        
         for(int x = 0; x < width; x++) { 
             for(int z = 0; z < height; z++)
             {
-                float xPos = x - width;
+                float xPos = x - (width * 0.75f);
                 float zPos = z - height;
 
                 verts.Add(new Vector3(xPos, y, zPos));
@@ -49,7 +52,8 @@ public class water : MonoBehaviour
                 t += 2;
             }
         }
-
+        prevVerts.Clear();
+        prevVerts = verts;
     }
     
     void displayMesh()
