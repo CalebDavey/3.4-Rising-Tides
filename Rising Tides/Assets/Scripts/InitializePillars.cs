@@ -13,7 +13,6 @@ public class InitializePillars : MonoBehaviour
 
     public GameObject pillar;
     public GameObject parent;
-    public shake virtualCam;
 
     GameObject[,] pillars;
 
@@ -40,8 +39,6 @@ public class InitializePillars : MonoBehaviour
                 pillars[x,z] = newPillar;
 
                 pillarMovement pillarMovementScript = newPillar.GetComponent<pillarMovement>();
-
-                pillarMovementScript.camShake = virtualCam;
 
                 float pillarOffset = Random.Range(0, pillarNoiseOffset);
                 
