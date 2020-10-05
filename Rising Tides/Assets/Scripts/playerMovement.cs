@@ -17,15 +17,33 @@ public class playerMovement : MonoBehaviour
     public float jumpHeight = 12;
     public float checkDistance = 0.4f;
 
+    public int lowerLimit = -10;
+
     float velocitySmoothing;
     float ySpeed = 0;
 
+    Vector3 initPosition;
+
     bool isGrounded;
+
+    private void Awake()
+    {
+        initPosition = transform.position;
+    }
 
     void Update()
     {
         move();
         triggerAnimations();
+        resetCheck();
+    }
+
+    void resetCheck()
+    {
+        if (transform.position.y <= lowerLimit || Input.GetKeyDown(KeyCode.R)) 
+        {
+            transform.position = initPosition;
+        }
     }
 
     void move()
