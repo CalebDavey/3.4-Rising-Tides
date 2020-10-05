@@ -949,6 +949,8 @@ Transform:
   m_LocalRotation: {x: 0.038689956, y: -0.017440341, z: 0.0006753746, w: 0.99909884}
   m_LocalPosition: {x: 1.2215505, y: 26.75, z: -81.37868}
 >>>>>>> parent of 6029056... Adjusted Pillar movement + Sizes
+  m_LocalRotation: {x: 0.038689956, y: -0.01744027, z: 0.00067537196, w: 0.99909884}
+  m_LocalPosition: {x: 1.2215505, y: 31, z: -81.37868}
 =======
   m_LocalRotation: {x: 0.038689956, y: -0.01744027, z: 0.00067537196, w: 0.99909884}
   m_LocalPosition: {x: 1.2215505, y: 31, z: -81.37868}
@@ -1225,6 +1227,7 @@ Transform:
 =======
   m_LocalPosition: {x: 1.2215505, y: 26.75, z: -81.37868}
 >>>>>>> parent of 6029056... Adjusted Pillar movement + Sizes
+  m_LocalPosition: {x: 1.2215505, y: 31, z: -81.37868}
 =======
   m_LocalPosition: {x: 1.2215505, y: 31, z: -81.37868}
 >>>>>>> parent of 276e055... Movement Finished
@@ -3828,6 +3831,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 20.25, z: -46.4}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
 >>>>>>> parent of 6029056... Adjusted Pillar movement + Sizes
+  m_LocalPosition: {x: 0, y: 22, z: -46.4}
+  m_LocalScale: {x: 5, y: 5, z: 5}
 =======
   m_LocalPosition: {x: 0, y: 22, z: -46.4}
   m_LocalScale: {x: 5, y: 5, z: 5}
