@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InitializeGame : MonoBehaviour
+public class InitializePillars : MonoBehaviour
 {
 
     public int gridSizeX = 5;
@@ -16,20 +16,12 @@ public class InitializeGame : MonoBehaviour
 
     GameObject[,] pillars;
 
-    public int noiseStepSize = 3;
-
     private int pillarXSize;
     private int pillarZSize;
     private int pillarYSize;
 
     // Start is called before the first frame update
     void Awake()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        InitializePillars();    
-    }
-
-    void InitializePillars()
     {
         pillarXSize = (int)pillar.transform.localScale.x;
         pillarZSize = (int)pillar.transform.localScale.z;
@@ -39,26 +31,20 @@ public class InitializeGame : MonoBehaviour
 
         for (int x = 0; x < gridSizeX * pillarXSize; x += pillarXSize)
         {
-            for (int z = 0; z < gridSizeZ * pillarZSize; z += pillarZSize)
+            for(int z = 0; z < gridSizeZ * pillarZSize; z += pillarZSize)
             {
-                Vector3 initPos = new Vector3(x - (gridSizeX * 2), pillarInitHeight - (pillarYSize / 2), z - (gridSizeZ * 2));
+                Vector3 initPos = new Vector3(x - (gridSizeX*2), pillarInitHeight - (pillarYSize / 2), z - (gridSizeZ * 2));
 
                 GameObject newPillar = Instantiate(pillar, initPos, Quaternion.identity, parent.transform);
-                pillars[x, z] = newPillar;
+                pillars[x,z] = newPillar;
 
                 pillarMovement pillarMovementScript = newPillar.GetComponent<pillarMovement>();
 
                 float pillarOffset = Random.Range(0, pillarNoiseOffset);
-                if (x == 0)
-                {
-                    pillarMovementScript.height = pillarInitHeight + z;
-                }
-                else
-                {
-                    pillarMovementScript.height = Random.Range(-noiseStepSize, noiseStepSize) + (pillarInitHeight + Mathf.Round(Mathf.PerlinNoise((this.transform.position.x + pillarOffset) / 10, (this.transform.position.y + pillarOffset) / 10) * 10) * noiseStepSize);
-                }
+                
+                pillarMovementScript.height = pillarInitHeight + Mathf.Round(Mathf.PerlinNoise((this.transform.position.x + pillarOffset) / 10, (this.transform.position.y + pillarOffset) / 10) * 10);
             }
-        }
+        }            
     }
 
 }
