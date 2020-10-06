@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 609856870774659014}
   - component: {fileID: 1234212633537404711}
   - component: {fileID: 7110202241777962032}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pillar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,5 +109,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 3
-  camShake: {fileID: 0}
   height: 0
