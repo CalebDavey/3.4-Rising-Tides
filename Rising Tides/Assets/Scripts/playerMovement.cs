@@ -16,25 +16,45 @@ public class playerMovement : MonoBehaviour
     public float gravity;
     public float jumpHeight = 12;
     public float checkDistance = 0.4f;
+    public float lowerLimit = -30;
 
     float velocitySmoothing;
     float ySpeed = 0;
 
+    Vector3 initPosition;
+
     bool isGrounded;
+
+    private void Awake()
+    {
+        initPosition = transform.position;
+    }
 
     void Update()
     {
         move();
         triggerAnimations();
+        resetCheck();
     }
 
-    void move()
+    void resetCheck()
+    {
+        if (transform.position.y <= lowerLimit || Input.GetKeyDown(KeyCode.R))
+        {
+            transform.position = initPosition;
+        }
+    }
+
+        void move()
     {
         float horiz = Input.GetAxisRaw("Horizontal");
         float vert = Input.GetAxisRaw("Vertical");
 
         isGrounded = Physics.CheckSphere(groundCheck.position, checkDistance, groundMask);
-
+        if(isGrounded != true)
+        {
+            isGrounded = controller.isGrounded;
+        }
         if (isGrounded && ySpeed < 0)
         {
             ySpeed = -gravity * Time.deltaTime;
@@ -54,7 +74,6 @@ public class playerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            Debug.Log("Jump");
             ySpeed = Mathf.Sqrt(jumpHeight * gravity);
         }
 
