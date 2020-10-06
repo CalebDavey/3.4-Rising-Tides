@@ -23,7 +23,6 @@ public class playerMovement : MonoBehaviour
     void Update()
     {
         move();
-        triggerAnimations();
     }
 
     void move()
