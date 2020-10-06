@@ -13,11 +13,28 @@ public class playerMovement : MonoBehaviour
     public float rotationSpeed = 0.15f;
     public float gravity;
     public float jumpHeight = 12;
+<<<<<<< HEAD
 
     float velocitySmoothing;
 
 
     private void Update()
+=======
+    public float checkDistance = 0.4f;
+
+    float velocitySmoothing;
+    float ySpeed = 0;
+
+    bool isGrounded;
+
+    void Update()
+    {
+        move();
+        triggerAnimations();
+    }
+
+    void move()
+>>>>>>> parent of 6029056... Adjusted Pillar movement + Sizes
     {
         float ySpeed =+ gravity * Time.deltaTime;
         float horiz = Input.GetAxisRaw("Horizontal");
