@@ -25,6 +25,8 @@ public class playerMovement : MonoBehaviour
 
     bool isGrounded;
 
+    GameObject prevCollisionObject;
+
     private void Awake()
     {
         initPosition = transform.position;
@@ -35,6 +37,12 @@ public class playerMovement : MonoBehaviour
         move();
         triggerAnimations();
         resetCheck();
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit) {
+        if (hit.gameObject.tag == "Pillar") { 
+            hit.gameObject.SendMessage("triggerPillarDestroy", SendMessageOptions.DontRequireReceiver);
+        }
     }
 
     void resetCheck()

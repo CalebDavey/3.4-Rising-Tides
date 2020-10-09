@@ -5,14 +5,30 @@ using UnityEngine;
 public class pillarMovement : MonoBehaviour
 {
     public float time = 1f;
-
     public float height;
+    public float destroyChance = 5;
+    public float rumbleLength = 3;
+    public float rumbleMagnitude = 0.05f;
+    public GameObject player;
+
+    Vector3 startPosition;
+
+    float chance;
 
     private void Start()
     {
-            StartCoroutine(pillarRise(height, time));
+        chance = Random.Range(1, 100);
+        startPosition = transform.position;
+        StartCoroutine(pillarRise(height, time));
     }
 
+    void triggerPillarDestroy()
+    {
+        if ( chance <= destroyChance)
+        {
+            StartCoroutine(pillarRumble(rumbleLength, rumbleMagnitude));
+        }
+    }
 
     public IEnumerator pillarRise(float riseHeight, float riseTime)
     {
@@ -29,5 +45,42 @@ public class pillarMovement : MonoBehaviour
 
                 yield return new WaitForFixedUpdate();
             }
+    }
+
+    public IEnumerator pillarRumble(float rumbleTime, float mag)
+    {
+        float StartTime = Time.time;
+        float RumbleEndTime = StartTime + rumbleTime;
+
+        while (Time.time < RumbleEndTime)
+        {
+            Vector3 pos = this.transform.position;
+            pos.x += Random.Range(-mag, mag);
+            pos.y += Random.Range(-mag, mag);
+            this.transform.position = pos;
+
+            yield return new WaitForFixedUpdate();
+        }
+        StartCoroutine(pillarDescend(startPosition.y, time, true));
+    }
+    public IEnumerator pillarDescend( float endHeight, float descentTime, bool destroy)
+    {
+        float StartTime = Time.time;
+        float DescendEndTime = StartTime + descentTime;
+
+        Vector3 startPos = this.transform.position;
+        Vector3 endPos = new Vector3(this.transform.position.x, endHeight, this.transform.position.z);
+
+            while (Time.time < DescendEndTime)
+        {
+            float timeProgressed = (Time.time - StartTime) / descentTime;  // this will be 0 at the beginning and 1 at the end.
+            this.transform.position = Vector3.Lerp(startPos, endPos, timeProgressed);
+
+            yield return new WaitForFixedUpdate();
+        }
+        if(destroy)
+        {
+            Destroy(this);
+        }
     }
 }

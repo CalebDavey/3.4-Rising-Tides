@@ -559,10 +559,14 @@ MonoBehaviour:
   gridSizeX: 20
   gridSizeZ: 5
   pillarInitHeight: -15
+  numOfObjectives: 5
+  noiseStepSize: 3
   pillarNoiseOffset: 5
   pillar: {fileID: 6238598293047843717, guid: 2eb722e8ef4464142a010386a628e7c3, type: 3}
   parent: {fileID: 1504974205}
-  noiseStepSize: 3
+  player: {fileID: 8565132305139004439}
+  objective: {fileID: 102535664544018483, guid: 3850ed2ef416bf84480bce22e609581a,
+    type: 3}
 --- !u!4 &358919682
 Transform:
   m_ObjectHideFlags: 0
@@ -643,7 +647,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 779484108}
-  m_LocalRotation: {x: 0.038689956, y: -0.017440323, z: 0.00067537406, w: 0.99909884}
+  m_LocalRotation: {x: 0.038689956, y: -0.017440287, z: 0.00067537266, w: 0.99909884}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -717,7 +721,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930946101}
-  m_LocalRotation: {x: 0.020558486, y: -0.017449692, z: 0.00035886976, w: 0.9996363}
+  m_LocalRotation: {x: 0.020558486, y: -0.017449688, z: 0.00035886967, w: 0.9996363}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -791,7 +795,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1464917059}
-  m_LocalRotation: {x: 0.056856647, y: -0.017425139, z: 0.0009924921, w: 0.9982298}
+  m_LocalRotation: {x: 0.056856647, y: -0.017425135, z: 0.0009924917, w: 0.9982298}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -967,7 +971,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1848307174}
-  m_LocalRotation: {x: 0.038689956, y: -0.017440341, z: 0.0006753746, w: 0.99909884}
+  m_LocalRotation: {x: 0.038689956, y: -0.01744027, z: 0.00067537196, w: 0.99909884}
   m_LocalPosition: {x: 1.2215505, y: 26.75, z: -81.37868}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3597,7 +3601,7 @@ GameObject:
   - component: {fileID: 8565132305139004440}
   m_Layer: 0
   m_Name: Player Model
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
