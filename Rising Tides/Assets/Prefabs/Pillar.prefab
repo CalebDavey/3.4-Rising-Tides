@@ -112,5 +112,5 @@ MonoBehaviour:
   height: 0
   destroyChance: 10
   rumbleLength: 3
-  rumbleMagnitude: 0.02
+  rumbleMagnitude: 0.1
   player: {fileID: 0}

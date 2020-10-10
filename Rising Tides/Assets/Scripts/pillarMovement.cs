@@ -24,12 +24,15 @@ public class pillarMovement : MonoBehaviour
 
     void triggerPillarDestroy()
     {
-        if ( chance <= destroyChance)
+        if (chance <= destroyChance)
         {
             StartCoroutine(pillarRumble(rumbleLength, rumbleMagnitude));
         }
     }
 
+    /********************************* 
+     PILLAR RISE 
+    *********************************/
     public IEnumerator pillarRise(float riseHeight, float riseTime)
     {
         float StartTime = Time.time;
@@ -47,22 +50,33 @@ public class pillarMovement : MonoBehaviour
             }
     }
 
+    /********************************* 
+     PILLAR RUMBLE 
+    *********************************/
     public IEnumerator pillarRumble(float rumbleTime, float mag)
     {
         float StartTime = Time.time;
         float RumbleEndTime = StartTime + rumbleTime;
 
+        Vector3 startPos = this.transform.position;
+
         while (Time.time < RumbleEndTime)
         {
-            Vector3 pos = this.transform.position;
-            pos.x += Random.Range(-mag, mag);
+            Vector3 pos = startPos;
             pos.y += Random.Range(-mag, mag);
+           // pos.z += Random.Range(-mag, mag);
+
             this.transform.position = pos;
 
             yield return new WaitForFixedUpdate();
         }
+        this.transform.position = startPos;
         StartCoroutine(pillarDescend(startPosition.y, time, true));
     }
+
+    /********************************* 
+     PILLAR DESCENT 
+    *********************************/
     public IEnumerator pillarDescend( float endHeight, float descentTime, bool destroy)
     {
         float StartTime = Time.time;
@@ -80,7 +94,7 @@ public class pillarMovement : MonoBehaviour
         }
         if(destroy)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 }

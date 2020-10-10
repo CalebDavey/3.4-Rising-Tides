@@ -40,8 +40,9 @@ public class playerMovement : MonoBehaviour
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit) {
-        if (hit.gameObject.tag == "Pillar") { 
+        if (hit.gameObject.tag == "Pillar" && hit.gameObject != prevCollisionObject) { 
             hit.gameObject.SendMessage("triggerPillarDestroy", SendMessageOptions.DontRequireReceiver);
+            prevCollisionObject = hit.gameObject;
         }
     }
 
