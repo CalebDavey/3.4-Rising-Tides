@@ -11,6 +11,7 @@ public class InitializeGame : MonoBehaviour
     public int pillarInitHeight = -10;
     public int numOfObjectives = 5;
     public int noiseStepSize = 3;
+    public bool lockMouse = false;
 
     public float pillarNoiseOffset = 5;
 
@@ -21,8 +22,7 @@ public class InitializeGame : MonoBehaviour
 
     GameObject[,] pillars;
 
-    List<Vector2> objectiveIndices = new List<Vector2>();
-    List<>
+    List<GameObject> objectives = new List<GameObject>();
 
     private int pillarXSize;
     private int pillarZSize;
@@ -31,7 +31,10 @@ public class InitializeGame : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        if (lockMouse)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
         InitializePillars();
         InitializeObjectives();
     }
@@ -73,8 +76,13 @@ public class InitializeGame : MonoBehaviour
 
     void InitializeObjectives()
     {
+
+        List<Vector2> availableIndices = new List<Vector2>();
+        List<Vector2> chosenIndices = new List<Vector2>();
+
         bool validIndices = false;
-        for(int i =0; i < numOfObjectives; i++)
+
+        for(int i =0; i < pillars.Length; i++)
         {
             int X;
             int Z;
@@ -84,22 +92,29 @@ public class InitializeGame : MonoBehaviour
                 Z = Random.Range(0, gridSizeZ * pillarZSize);
                 if(pillars[X, Z] != null)
                 {
-                    objectiveIndices.Add(new Vector2(X, Z));
+                    availableIndices.Add(new Vector2(X, Z));
                     validIndices = true;
                 }
             }
             validIndices = false;
         }
 
-        for(int i = 0; i < objectiveIndices.Count; i++)
+        for(int i = 0; i < numOfObjectives; i++)
         {
-            int objX = (int)objectiveIndices[i].x;
-            int objY = (int)objectiveIndices[i].y;
+            int index = Random.Range(1, availableIndices.Count);
+            chosenIndices.Add(availableIndices[index]);
+            availableIndices.RemoveAt(index);
+        }
+
+        for(int i = 0; i < chosenIndices.Count; i++)
+        {
+            int objX = (int)chosenIndices[i].x;
+            int objY = (int)chosenIndices[i].y;
             Vector3 pos = pillars[objX,objY].transform.position;
             pos.y += (pillarYSize / 2 + objective.transform.localScale.y / 2);
-            Instantiate(objective, pos, Quaternion.identity);
-
-
+            GameObject newObj = Instantiate(objective, pos, Quaternion.identity);
+            newObj.transform.SetParent(pillars[objX, objY].transform);
+            objectives.Add(newObj);
         }
     }
 }

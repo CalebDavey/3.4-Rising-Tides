@@ -561,11 +561,12 @@ MonoBehaviour:
   pillarInitHeight: -15
   numOfObjectives: 5
   noiseStepSize: 3
+  lockMouse: 1
   pillarNoiseOffset: 5
   pillar: {fileID: 6238598293047843717, guid: 2eb722e8ef4464142a010386a628e7c3, type: 3}
   parent: {fileID: 1504974205}
   player: {fileID: 8565132305139004439}
-  objective: {fileID: 102535664544018483, guid: 3850ed2ef416bf84480bce22e609581a,
+  objective: {fileID: 5902842279065742012, guid: 4f4b9a8f5aa24454a854338dd1881bfe,
     type: 3}
 --- !u!4 &358919682
 Transform:
@@ -721,7 +722,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930946101}
-  m_LocalRotation: {x: 0.020558486, y: -0.017449688, z: 0.00035886967, w: 0.9996363}
+  m_LocalRotation: {x: 0.020558486, y: -0.017449692, z: 0.00035886976, w: 0.9996363}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -795,7 +796,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1464917059}
-  m_LocalRotation: {x: 0.056856647, y: -0.017425135, z: 0.0009924917, w: 0.9982298}
+  m_LocalRotation: {x: 0.056856647, y: -0.017425139, z: 0.0009924921, w: 0.9982298}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
