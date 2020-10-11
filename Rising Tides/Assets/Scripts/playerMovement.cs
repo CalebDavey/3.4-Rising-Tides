@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
-
+    // PUBLIC VARIABLES
     public CharacterController controller;
     public Transform cam;
     public Animator animator;
@@ -18,6 +18,7 @@ public class playerMovement : MonoBehaviour
     public float checkDistance = 0.4f;
     public float lowerLimit = -30;
 
+    // PRIVATE VARIABLES
     float velocitySmoothing;
     float ySpeed = 0;
 
@@ -37,6 +38,23 @@ public class playerMovement : MonoBehaviour
         resetCheck();
     }
 
+<<<<<<< Updated upstream
+=======
+    private void OnControllerColliderHit(ControllerColliderHit hit) {
+        if (hit.gameObject.tag == "Pillar" && hit.gameObject != prevCollisionObject) {
+            if (hit.transform.position.y < this.transform.position.y - (hit.transform.localScale.y / 2))
+            {
+                hit.gameObject.SendMessage("triggerPillarDestroy", SendMessageOptions.DontRequireReceiver);
+                prevCollisionObject = hit.gameObject;
+            }
+        }
+    }
+
+    /********************************* 
+     CHECKS IF THE PLAYER HAS 
+     PRESSED R OR IS BELOW THE THRESHOLD
+    *********************************/
+>>>>>>> Stashed changes
     void resetCheck()
     {
         if (transform.position.y <= lowerLimit || Input.GetKeyDown(KeyCode.R))
@@ -45,7 +63,10 @@ public class playerMovement : MonoBehaviour
         }
     }
 
-        void move()
+    /********************************* 
+     MOVES THE PLAYER ACCORDING TO INPUT
+    *********************************/
+    void move()
     {
         float horiz = Input.GetAxisRaw("Horizontal");
         float vert = Input.GetAxisRaw("Vertical");
@@ -81,6 +102,9 @@ public class playerMovement : MonoBehaviour
         controller.Move(new Vector3(0.0f, ySpeed, 0.0f));
     }
 
+    /********************************* 
+     TRIGGERS ANIMATIONS ACCORDING TO PLAYER INPUTS 
+    *********************************/
     void triggerAnimations()
     {
         float horiz = Input.GetAxisRaw("Horizontal");

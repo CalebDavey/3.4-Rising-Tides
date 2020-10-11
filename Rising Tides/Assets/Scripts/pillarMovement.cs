@@ -4,7 +4,21 @@ using UnityEngine;
 
 public class pillarMovement : MonoBehaviour
 {
+    // PUBLIC VARIABLES
     public float time = 1f;
+<<<<<<< Updated upstream
+=======
+    public float height;
+    public float destroyChance = 5;
+    public float rumbleLength = 3;
+    public float rumbleMagnitude = 0.05f;
+    public GameObject player;
+
+    // PRIVATE VARIABLES
+    Vector3 startPosition;
+
+    float chance;
+>>>>>>> Stashed changes
 
     public float height;
 
