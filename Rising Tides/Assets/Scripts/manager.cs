@@ -40,6 +40,11 @@ public class manager : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
+        Initialize();
+    }
+
+    public void Initialize()
+    {
         InitializePillars();
         InitializeObjectives();
     }
@@ -122,15 +127,16 @@ public class manager : MonoBehaviour
 
             newObj.transform.SetParent(pillars[objX, objY].transform);
             newObj.GetComponentInChildren<objectiveInteraction>().gameManager = this.gameObject.GetComponent<manager>();
+            newObj.GetComponentInChildren<objectiveInteraction>().sceneManager = this.gameObject.GetComponent<SceneManager>();
 
             objectives.Add(newObj);
         }
     }
 
-    public void updateScore(int amount)
+    public void updateScore(int currentScore, float possibleScore)
     {
-        score += amount;
-        scoreText.text = "Score: " + score.ToString();
+        score += currentScore;
+        scoreText.text = "Score: " + score.ToString() + " / " + possibleScore.ToString();
     }
 
 }

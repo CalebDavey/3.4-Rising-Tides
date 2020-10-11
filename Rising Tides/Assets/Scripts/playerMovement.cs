@@ -17,6 +17,7 @@ public class playerMovement : MonoBehaviour
     public float jumpHeight = 12;
     public float checkDistance = 0.4f;
     public float lowerLimit = -30;
+    public bool movementEnabled = true;
 
     float velocitySmoothing;
     float ySpeed = 0;
@@ -32,34 +33,45 @@ public class playerMovement : MonoBehaviour
         initPosition = transform.position;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        move();
+        isGrounded = Physics.CheckSphere(groundCheck.position, checkDistance, groundMask);
+        if (movementEnabled)
+        {
+            move();
+        }
         triggerAnimations();
         resetCheck();
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit) {
-        if (hit.gameObject.tag == "Pillar" && hit.gameObject != prevCollisionObject) { 
-            hit.gameObject.SendMessage("triggerPillarDestroy", SendMessageOptions.DontRequireReceiver);
-            prevCollisionObject = hit.gameObject;
+        if (hit.gameObject.tag == "Pillar" && hit.gameObject != prevCollisionObject) {
+            if (hit.transform.position.y < transform.position.y - (hit.transform.localScale.y / 2))
+            {
+                hit.gameObject.SendMessage("triggerPillarDestroy", SendMessageOptions.DontRequireReceiver);
+                prevCollisionObject = hit.gameObject;
+            }
         }
     }
 
-    void resetCheck()
+    public void resetCheck()
     {
         if (transform.position.y <= lowerLimit || Input.GetKeyDown(KeyCode.R))
         {
-            transform.position = initPosition;
+            resetPlayer();
         }
     }
 
-        void move()
+    public void resetPlayer()
+    {
+        transform.position = initPosition;
+    }
+
+    void move()
     {
         float horiz = Input.GetAxisRaw("Horizontal");
         float vert = Input.GetAxisRaw("Vertical");
 
-        isGrounded = Physics.CheckSphere(groundCheck.position, checkDistance, groundMask);
         if(isGrounded != true)
         {
             isGrounded = controller.isGrounded;
@@ -100,7 +112,7 @@ public class playerMovement : MonoBehaviour
             animator.SetBool("running", true);
             animator.SetBool("jumping", false);
         }
-        if (ySpeed > 0)
+        if (ySpeed > 0 && isGrounded == false)
         {
             animator.SetBool("running", false);
             animator.SetBool("jumping", true);

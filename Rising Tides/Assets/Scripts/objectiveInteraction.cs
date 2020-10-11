@@ -4,6 +4,7 @@ using UnityEngine;
 public class objectiveInteraction : MonoBehaviour
 {
     public manager gameManager;
+    public SceneManager sceneManager;
 
     public int scoreIncrease = 1;
 
@@ -11,7 +12,8 @@ public class objectiveInteraction : MonoBehaviour
     {
         if(col.gameObject.tag == "Player")
         {
-            gameManager.updateScore(scoreIncrease);
+            
+            gameManager.updateScore(scoreIncrease, sceneManager.initialObjectives + (sceneManager.level * sceneManager.objectiveCountChange));
             Destroy(this.gameObject);
         }
     }
