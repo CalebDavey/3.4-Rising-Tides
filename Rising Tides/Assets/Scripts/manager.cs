@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 
-public class InitializeGame : MonoBehaviour
+public class manager : MonoBehaviour
 {
 
     public int gridSizeX = 5;
@@ -11,6 +12,8 @@ public class InitializeGame : MonoBehaviour
     public int pillarInitHeight = -10;
     public int numOfObjectives = 5;
     public int noiseStepSize = 3;
+    public int score = 0;
+
     public bool lockMouse = false;
 
     public float pillarNoiseOffset = 5;
@@ -19,6 +22,8 @@ public class InitializeGame : MonoBehaviour
     public GameObject parent;
     public GameObject player;
     public GameObject objective;
+
+    public Text scoreText; 
 
     GameObject[,] pillars;
 
@@ -111,10 +116,21 @@ public class InitializeGame : MonoBehaviour
             int objX = (int)chosenIndices[i].x;
             int objY = (int)chosenIndices[i].y;
             Vector3 pos = pillars[objX,objY].transform.position;
+
             pos.y += (pillarYSize / 2 + objective.transform.localScale.y / 2);
             GameObject newObj = Instantiate(objective, pos, Quaternion.identity);
+
             newObj.transform.SetParent(pillars[objX, objY].transform);
+            newObj.GetComponentInChildren<objectiveInteraction>().gameManager = this.gameObject.GetComponent<manager>();
+
             objectives.Add(newObj);
         }
     }
+
+    public void updateScore(int amount)
+    {
+        score += amount;
+        scoreText.text = "Score: " + score.ToString();
+    }
+
 }

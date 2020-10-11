@@ -15,6 +15,8 @@ public class pillarMovement : MonoBehaviour
 
     float chance;
 
+    bool beingDestroyed = false;
+
     private void Start()
     {
         chance = Random.Range(1, 100);
@@ -24,9 +26,10 @@ public class pillarMovement : MonoBehaviour
 
     void triggerPillarDestroy()
     {
-        if (chance <= destroyChance)
+        if (chance <= destroyChance && beingDestroyed != true)
         {
             StartCoroutine(pillarRumble(rumbleLength, rumbleMagnitude));
+            beingDestroyed = true;
         }
     }
 
