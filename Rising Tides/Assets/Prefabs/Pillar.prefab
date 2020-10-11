@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7110202241777962032}
   m_Layer: 8
   m_Name: Pillar
-  m_TagString: Untagged
+  m_TagString: Pillar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,3 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 3
   height: 0
+  destroyChance: 10
+  rumbleLength: 3
+  rumbleMagnitude: 0.1
+  player: {fileID: 0}

@@ -6,7 +6,11 @@ using UnityEngine;
 
 public class manager : MonoBehaviour
 {
+<<<<<<< HEAD
     // PUBLIC VARIABLES
+=======
+
+>>>>>>> Objectives
     public int gridSizeX = 5;
     public int gridSizeZ = 5;
     public int pillarInitHeight = -10;
@@ -23,9 +27,14 @@ public class manager : MonoBehaviour
     public GameObject player;
     public GameObject objective;
 
+<<<<<<< HEAD
     public Text scoreText;
 
     // PRIVATE VARIABLES
+=======
+    public Text scoreText; 
+
+>>>>>>> Objectives
     GameObject[,] pillars;
 
     List<GameObject> objectives = new List<GameObject>();
@@ -41,14 +50,25 @@ public class manager : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
+<<<<<<< HEAD
+=======
+        Initialize();
+    }
+
+    public void Initialize()
+    {
+>>>>>>> Objectives
         InitializePillars();
         InitializeObjectives();
     }
 
+<<<<<<< HEAD
     /********************************* 
      INITIALIZES PILLARS BY CLONING 
      PREFABS AT SELECT SPOTS
     *********************************/
+=======
+>>>>>>> Objectives
     void InitializePillars()
     {
         pillarXSize = (int)pillar.transform.localScale.x;
@@ -84,9 +104,12 @@ public class manager : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     /********************************* 
      INITIALIZES OBJECTS AT SELECTED SPOTS
     *********************************/
+=======
+>>>>>>> Objectives
     void InitializeObjectives()
     {
 
@@ -130,11 +153,16 @@ public class manager : MonoBehaviour
 
             newObj.transform.SetParent(pillars[objX, objY].transform);
             newObj.GetComponentInChildren<objectiveInteraction>().gameManager = this.gameObject.GetComponent<manager>();
+<<<<<<< HEAD
+=======
+            newObj.GetComponentInChildren<objectiveInteraction>().sceneManager = this.gameObject.GetComponent<SceneManager>();
+>>>>>>> Objectives
 
             objectives.Add(newObj);
         }
     }
 
+<<<<<<< HEAD
     /********************************* 
      UPDATES SCORE BY PASSED AMOUNT 
     *********************************/
@@ -142,6 +170,12 @@ public class manager : MonoBehaviour
     {
         score += amount;
         scoreText.text = "Score: " + score.ToString();
+=======
+    public void updateScore(int currentScore, float possibleScore)
+    {
+        score += currentScore;
+        scoreText.text = "Score: " + score.ToString() + " / " + possibleScore.ToString();
+>>>>>>> Objectives
     }
 
 }
