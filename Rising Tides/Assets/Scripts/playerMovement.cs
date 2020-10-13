@@ -20,7 +20,7 @@ public class playerMovement : MonoBehaviour
     public bool movementEnabled = true;
 
     float velocitySmoothing;
-    float ySpeed = 0;
+    Vector3 Velocity = new Vector3(0,0,0);
 
     Vector3 initPosition;
 
@@ -76,18 +76,18 @@ public class playerMovement : MonoBehaviour
         {
             isGrounded = controller.isGrounded;
         }
-        if (isGrounded && ySpeed < 0)
+        if (isGrounded && Velocity.y < 0)
         {
-            ySpeed = gravity * Time.deltaTime;
+            Velocity.y = gravity * Time.deltaTime;
         }
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            ySpeed = Mathf.Sqrt(jumpHeight * -2 * gravity);
+            Velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
 
-        ySpeed += gravity * Time.deltaTime;
-        controller.Move(new Vector3(0.0f, ySpeed, 0.0f));
+        Velocity.y += gravity * Time.deltaTime;
+        controller.Move(Velocity);
 
         Vector3 direction = new Vector3(horiz, 0, vert).normalized;
 
@@ -113,7 +113,7 @@ public class playerMovement : MonoBehaviour
             animator.SetBool("running", true);
             animator.SetBool("jumping", false);
         }
-        if (ySpeed > 0 && isGrounded == false)
+        if (Velocity.y > 0 && isGrounded == false)
         {
             animator.SetBool("running", false);
             animator.SetBool("jumping", true);
