@@ -33,7 +33,7 @@ public class playerMovement : MonoBehaviour
         initPosition = transform.position;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, checkDistance, groundMask);
         if (movementEnabled)
@@ -78,8 +78,16 @@ public class playerMovement : MonoBehaviour
         }
         if (isGrounded && ySpeed < 0)
         {
-            ySpeed = -gravity * Time.deltaTime;
+            ySpeed = gravity * Time.deltaTime;
         }
+
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            ySpeed = Mathf.Sqrt(jumpHeight * -2 * gravity);
+        }
+
+        ySpeed += gravity * Time.deltaTime;
+        controller.Move(new Vector3(0.0f, ySpeed, 0.0f));
 
         Vector3 direction = new Vector3(horiz, 0, vert).normalized;
 
@@ -93,13 +101,6 @@ public class playerMovement : MonoBehaviour
             controller.Move(moveDir * speed * Time.deltaTime);
         }
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            ySpeed = Mathf.Sqrt(jumpHeight * gravity);
-        }
-
-        ySpeed -= gravity * Time.deltaTime;
-        controller.Move(new Vector3(0.0f, ySpeed, 0.0f));
     }
 
     void triggerAnimations()

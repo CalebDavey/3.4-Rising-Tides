@@ -110,7 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 3
   height: 0
-  destroyChance: 10
+  destroyChance: 40
   rumbleLength: 3
   rumbleMagnitude: 0.1
   player: {fileID: 0}

@@ -571,6 +571,7 @@ MonoBehaviour:
   objective: {fileID: 5902842279065742012, guid: 4f4b9a8f5aa24454a854338dd1881bfe,
     type: 3}
   scoreText: {fileID: 1471406319}
+  objectives: []
 --- !u!4 &358919682
 Transform:
   m_ObjectHideFlags: 0
@@ -603,7 +604,9 @@ MonoBehaviour:
     type: 3}
   destroyChanceChange: 10
   rumbleLengthChange: 0.5
-  objectiveCountChange: 0.5
+  objectiveCountChange: 2
+  level: 0
+  initialObjectives: 0
 --- !u!1 &406553226
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,8 +674,8 @@ Canvas:
   m_GameObject: {fileID: 406553226}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1848307176}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -769,7 +772,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 779484108}
-  m_LocalRotation: {x: 0.038689956, y: -0.017440323, z: 0.00067537406, w: 0.99909884}
+  m_LocalRotation: {x: 0.038689956, y: -0.017440287, z: 0.00067537266, w: 0.99909884}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1065,10 +1068,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 9fec8b62c1eb3514794e7cd091c8545f, type: 3}
-    m_FontSize: 20
+    m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -6149,7 +6152,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1848307174}
-  m_LocalRotation: {x: 0.038689956, y: -0.017440341, z: 0.0006753746, w: 0.99909884}
+  m_LocalRotation: {x: 0.038689956, y: -0.01744027, z: 0.00067537196, w: 0.99909884}
   m_LocalPosition: {x: 1.2215505, y: 26.75, z: -81.37868}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -7446,10 +7449,10 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4835078630258379571, guid: 2d88a3289761b7b428151f079b426938, type: 3}
-  - {fileID: -414921334540547795, guid: 2d88a3289761b7b428151f079b426938, type: 3}
-  - {fileID: -5637652675625914632, guid: 2d88a3289761b7b428151f079b426938, type: 3}
-  - {fileID: 4217796364934669478, guid: 2d88a3289761b7b428151f079b426938, type: 3}
+  - {fileID: 2100000, guid: f0efc0fe0b353524bacdd3784f013db1, type: 2}
+  - {fileID: 2100000, guid: 0070aee8263887944a5ba235fb936167, type: 2}
+  - {fileID: 2100000, guid: bd17985f93f6aeb479da47c3cdf27390, type: 2}
+  - {fileID: 2100000, guid: f64cbc38e784ccb439f2381d34f52915, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8949,9 +8952,9 @@ MonoBehaviour:
     m_Bits: 256
   speed: 20
   rotationSpeed: 0.15
-  gravity: 1
-  jumpHeight: 0.3
-  checkDistance: 0.2
+  gravity: -4
+  jumpHeight: 0.2
+  checkDistance: 0.4
   lowerLimit: -30
   movementEnabled: 1
 --- !u!4 &8576139127729665663

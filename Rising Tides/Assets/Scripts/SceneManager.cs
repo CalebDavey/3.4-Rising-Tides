@@ -10,7 +10,7 @@ public class SceneManager : MonoBehaviour
 
     public float destroyChanceChange = 10;
     public float rumbleLengthChange = 0.5f;
-    public float objectiveCountChange = 0.5f;
+    public float objectiveCountChange = 2f;
 
     public int level = 0;
     public int initialObjectives = 0;
@@ -24,9 +24,10 @@ public class SceneManager : MonoBehaviour
         if (managerScript.score == initialObjectives + (level * objectiveCountChange))
         {
             playerScript.movementEnabled = false;
-            playerScript.animator.SetBool("Running", false);
-            playerScript.animator.SetBool("Jumping", false);
+            playerScript.animator.SetBool("running", false);
+            playerScript.animator.SetBool("jumping", false);
 
+            destroyPrefabs();
             managerScript.Initialize();
             playerScript.resetPlayer();
             level++;
@@ -40,5 +41,19 @@ public class SceneManager : MonoBehaviour
         pillarScript.rumbleLength -= rumbleLengthChange;
 
         managerScript.numOfObjectives += (int)objectiveCountChange;
+        managerScript.updateScore(managerScript.score, initialObjectives + (level * objectiveCountChange));
+    }
+
+    void destroyPrefabs()
+    {
+
+        foreach(GameObject pillar in managerScript.pillars) { 
+                GameObject.Destroy(pillar);
+        }
+
+        foreach (GameObject objective in managerScript.objectives)
+        {
+            GameObject.Destroy(objective);
+        }
     }
 }
