@@ -134,15 +134,15 @@ public class manager : MonoBehaviour
 
             newObj.transform.SetParent(pillars[objX, objY].transform);
             newObj.GetComponentInChildren<objectiveInteraction>().gameManager = this.gameObject.GetComponent<manager>();
-            newObj.GetComponentInChildren<objectiveInteraction>().sceneManager = this.gameObject.GetComponent<SceneManager>();
+            newObj.GetComponentInChildren<objectiveInteraction>().sceneManager = this.gameObject.GetComponent<levelManager>();
 
             objectives.Add(newObj);
         }
     }
-    public void updateScore(int currentScore, float possibleScore)
+    public void updateScore(int currentScore)
     {
         score += currentScore;
-        scoreText.text = "Score: " + score.ToString() + " / " + possibleScore.ToString();
+        scoreText.text = "Score: " + score.ToString() + " / " + numOfObjectives.ToString();
     }
 
 }

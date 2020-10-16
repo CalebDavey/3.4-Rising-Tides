@@ -18,17 +18,18 @@ public class playerMovement : MonoBehaviour
     public float checkDistance = 0.4f;
     public float lowerLimit = -30;
     public bool movementEnabled = true;
+    public bool reset = false;
 
     float velocitySmoothing;
     Vector3 Velocity = new Vector3(0,0,0);
 
-    Vector3 initPosition;
+   public Vector3 initPosition;
 
     bool isGrounded;
 
     GameObject prevCollisionObject;
 
-    private void Awake()
+    private void Start()
     {
         initPosition = transform.position;
     }
@@ -56,15 +57,16 @@ public class playerMovement : MonoBehaviour
 
     public void resetCheck()
     {
-        if (transform.position.y <= lowerLimit || Input.GetKeyDown(KeyCode.R))
+        if (transform.position.y <= lowerLimit || Input.GetKeyDown(KeyCode.R) || reset == true)
         {
             resetPlayer();
+            reset = false;
         }
     }
 
     public void resetPlayer()
     {
-        transform.position = initPosition;
+        this.transform.position = initPosition;
     }
 
     void move()
@@ -83,11 +85,11 @@ public class playerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            Velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
+            Velocity.y += Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
 
         Velocity.y += gravity * Time.deltaTime;
-        controller.Move(Velocity);
+        controller.Move(Velocity * Time.deltaTime);
 
         Vector3 direction = new Vector3(horiz, 0, vert).normalized;
 
@@ -97,7 +99,6 @@ public class playerMovement : MonoBehaviour
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref velocitySmoothing, rotationSpeed);
             transform.rotation = Quaternion.Euler(new Vector3(0f, angle, 0f));
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
             controller.Move(moveDir * speed * Time.deltaTime);
         }
 
