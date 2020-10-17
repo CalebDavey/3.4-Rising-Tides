@@ -22,6 +22,8 @@ public class manager : MonoBehaviour
     public GameObject parent;
     public GameObject player;
     public GameObject objective;
+    public loadingScenes sceneLoader;
+    public GameObject pauseMenu;
 
     public Text scoreText; 
 
@@ -36,11 +38,21 @@ public class manager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        pauseMenu.SetActive(false);
+
         if (lockMouse)
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
         Initialize();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            sceneLoader.pause();
+        }
     }
 
     public void Initialize()
