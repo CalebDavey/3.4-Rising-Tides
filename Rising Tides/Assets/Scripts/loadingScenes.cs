@@ -14,4 +14,17 @@ public class loadingScenes : MonoBehaviour
     {
         Application.Quit();   
     }
+
+    public void fail() {
+
+        Cursor.lockState = CursorLockMode.None;
+        SceneManager.LoadScene("Fail Screen");
+    }
+
+    public void win()
+    {
+
+        Cursor.lockState = CursorLockMode.None;
+        SceneManager.LoadScene("Win Screen");
+    }
 }

@@ -7,6 +7,7 @@ public class levelManager : MonoBehaviour
     public playerMovement playerScript;
     public manager managerScript;
     public pillarMovement pillarScript;
+    public loadingScenes sceneLoader;
 
     public float destroyChanceChange = 10;
     public float rumbleLengthChange = 0.5f;
@@ -14,12 +15,22 @@ public class levelManager : MonoBehaviour
 
     public int level = 0;
     public int initialObjectives = 1;
+    public int finalLevel = 4;
 
     private void Start()
     {
         initialObjectives = managerScript.numOfObjectives;
         managerScript.updateScore(0);
     }
+
+    private void Update()
+    {
+        if(level == finalLevel + 1)
+        {
+            sceneLoader.win();
+        }
+    }
+
     public void progressLevels()
     {
         if (managerScript.score == managerScript.numOfObjectives)

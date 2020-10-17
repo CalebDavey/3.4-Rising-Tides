@@ -52,7 +52,7 @@ MeshRenderer:
   m_GameObject: {fileID: 136226807208805185}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  sceneManager: {fileID: 0}
   scoreIncrease: 1
 --- !u!1 &5902842279065742012
 GameObject:

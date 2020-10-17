@@ -17,13 +17,14 @@ public class playerMovement : MonoBehaviour
     public float jumpHeight = 12;
     public float checkDistance = 0.4f;
     public float lowerLimit = -30;
+
     public bool movementEnabled = true;
     public bool reset = false;
 
     float velocitySmoothing;
-    Vector3 Velocity = new Vector3(0,0,0);
+    Vector3 Velocity = new Vector3(0, 0, 0);
 
-   public Vector3 initPosition;
+    public Vector3 initPosition;
 
     bool isGrounded;
 
@@ -45,8 +46,10 @@ public class playerMovement : MonoBehaviour
         resetCheck();
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit) {
-        if (hit.gameObject.tag == "Pillar" && hit.gameObject != prevCollisionObject) {
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.tag == "Pillar" && hit.gameObject != prevCollisionObject)
+        {
             if (hit.transform.position.y < transform.position.y - (hit.transform.localScale.y / 2))
             {
                 hit.gameObject.SendMessage("triggerPillarDestroy", SendMessageOptions.DontRequireReceiver);
@@ -57,10 +60,16 @@ public class playerMovement : MonoBehaviour
 
     public void resetCheck()
     {
-        if (transform.position.y <= lowerLimit || Input.GetKeyDown(KeyCode.R) || reset == true)
+        if (transform.position.y <= lowerLimit || Input.GetKeyDown(KeyCode.R))
         {
-            resetPlayer();
-            reset = false;
+                resetPlayer();
+            GetComponent<health>().loseLife();
+        }
+
+        if (reset)
+        {
+                resetPlayer();
+                reset = false;
         }
     }
 
@@ -74,7 +83,7 @@ public class playerMovement : MonoBehaviour
         float horiz = Input.GetAxisRaw("Horizontal");
         float vert = Input.GetAxisRaw("Vertical");
 
-        if(isGrounded != true)
+        if (isGrounded != true)
         {
             isGrounded = controller.isGrounded;
         }
